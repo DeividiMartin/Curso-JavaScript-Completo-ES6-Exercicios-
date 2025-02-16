@@ -1,25 +1,46 @@
-//Adiciona a classe ativo a todos os itens do menu
-const itensMenu = document.querySelectorAll(".menu a");
-itensMenu.forEach((item) => {
-  item.classList.add("ativo");
+// Verifique a distância da primeira imagem
+// em relação ao topo da página
+const img = document.querySelector("img");
+const imgTop = img.offsetTop;
+
+console.log(imgTop);
+
+// Retorne a soma da largura de todas as imagens
+function somaImagens() {
+  const imagens = document.querySelectorAll("img");
+  let soma = 0;
+  imagens.forEach((imagem) => {
+    soma += imagem.offsetWidth;
+  });
+  console.log(soma);
+}
+
+window.onload = function () {
+  somaImagens();
+};
+
+// Verifique se os links da página possuem
+// o mínimo recomendado para telas utilizadas
+// com o dedo. (48px/48px de acordo com o google)
+
+const links = document.querySelectorAll("a");
+
+links.forEach((link) => {
+  const linkWidth = link.offsetWidth;
+  const linkHeight = link.offsetHeight;
+  if (linkWidth >= 48 && linkHeight >= 48) {
+    console.log(link, "Possui boa acessibilidade");
+  } else {
+    console.log(link, "Não possui boa acessibilidade");
+  }
 });
 
-//Remove a classe ativo de todos os itens do menu e mantenha apenas no primeiro
-itensMenu.forEach((item) => {
-  item.classList.remove("ativo");
-});
+// Se o browser for menor que 720px,
+// adicione a classe menu-mobile ao menu
 
-itensMenu[0].classList.add("ativo");
+const browserSmall = window.matchMedia("(max-width: 720px)").matches;
 
-//Verifique se as imagen possuem o atriburto alt
-
-const imagens = document.querySelectorAll("img");
-imagens.forEach((imagen) => {
-  const possuiAtributo = imagen.hasAttribute("alt");
-  console.log(possuiAtributo);
-});
-
-//Modifique o href do link externo no menu
-const link = document.querySelector('a[href^="http"]');
-link.setAttribute("href", "http://www.google.com/");
-console.log(link);
+if (browserSmall) {
+  const menu = document.querySelector(".menu");
+  menu.classList.add("menu-mobile");
+}
