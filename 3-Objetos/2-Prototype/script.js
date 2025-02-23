@@ -8,12 +8,11 @@ function Pessoa(nome, sobrenome, idade) {
   this.sobrenome = sobrenome;
   this.idade = idade;
 }
-
 Pessoa.prototype.nomeCompleto = function () {
-  return `${this.nome} ${this.sobrenome}`;
+  return console.log(`${this.nome}, ${this.sobrenome}`);
 };
 
-const andre = new Pessoa("André", "Rafael", 28);
+const deividi = new Pessoa("deividi", "martin", 27);
 
 // Liste os métodos acessados por
 // dados criados com NodeList,
